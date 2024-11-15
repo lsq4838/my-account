@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container-fluid mt-3">
+    <div class="d-flex justify-content-end">
+      <!-- 预防CSRF跨站请求伪造攻击 -->
+      <form action="/logout" method="post">
+        <button class="btn btn-danger">注销</button>
+      </form>
+    </div>
+    <div class="divider mt-4 mb-3"></div>
+    <div class="d-flex align-items-center justify-content-between">
+      <h2>记账本</h2>
+      <a href="/account/create" class="btn btn-primary">添加账单</a>
+    </div>
+    <div class="divider mt-4 mb-3"></div>
+    <% list.map(item => { %>
+      <div class="card mb-3">
+        <div class="card-header <%= item.type === -1 ? 'text-bg-danger' : 'text-bg-success' %>">
+          <%= moment(item.date).format("YYYY-MM-DD") %>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <div class="flex-fill">
+                <span class="item-desc"><%= item.title %></span>
+                <span class="badge mx-5 <%= item.type === -1 ? 'text-bg-danger' : 'text-bg-success' %>"><%= item.type === -1 ? "支出" : "收入" %></span>
+                <span class=""><%= item.amount %>元</span>
+              </div>
+              <a href="/account/<%= item.id %>">
+                <button type="button" class="btn-close" aria-label="Close"></button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <% }) %>
+  </div>
+
+  <script>
+    const btnClose = document.querySelectorAll(".btn-close")
+    btnClose.forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        if (confirm("您确定要删除该账单吗？")) {
+          return true;
+        } else {
+          e.preventDefault();
+        }
+      })
+    })
+  </script>
+</body>
+</html>

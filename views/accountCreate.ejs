@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container-fluid mt-3">
+    <h2 class="mb-4">添加记录</h2>
+    <form class="form" method="post" action="/account">
+      <div class="mb-2">
+        <label for="exampleFormControlInput1" class="form-label">事项</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="">
+      </div>
+      <div class="mb-2">
+        <label for="exampleFormControlInput2" class="form-label">发生时间</label>
+        <input type="date" class="form-control" id="exampleFormControlInput2" name="date" placeholder="">
+      </div>
+      <div class="mb-2">
+        <label for="exampleFormControlSelect1" class="form-label">类型</label>
+        <select class="form-control" aria-label="Default select example" name="type" id="exampleFormControlSelect1">
+          <option selected value="-1">支出</option>
+          <option value="1">收入</option>
+        </select>
+      </div>
+      <div class="mb-2">
+        <label for="exampleFormControlInput4" class="form-label">金额</label>
+        <input type="number" class="form-control" id="exampleFormControlInput4" name="amount" placeholder="">
+      </div>
+      <div class="mb-4">
+        <label for="exampleFormControlTextarea1" class="form-label">备注</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="remarks"></textarea>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">添加</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
